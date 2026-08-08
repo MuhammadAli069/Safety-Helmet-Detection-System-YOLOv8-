@@ -21,8 +21,6 @@ st.write(
 # ---------------------------------------------------------
 @st.cache_resource
 def load_model():
-    # Update this path to wherever best.pt lives on the machine
-    # running this app (local copy, or a Drive-mounted path).
     return YOLO("best.pt")
 
 model = load_model()

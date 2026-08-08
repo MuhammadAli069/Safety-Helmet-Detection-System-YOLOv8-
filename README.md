@@ -1,54 +1,53 @@
-# Helmet Detection Dataset (Cleaned)
+# 🦺 Safety Helmet Detection System using YOLOv8
 
-Derived from the Roboflow "Construction Site Safety" dataset (v30, CC BY 4.0,
-https://universe.roboflow.com/roboflow-universe-projects/construction-site-safety/dataset/30),
-filtered down to 3 classes for a Safety Helmet Detection project.
+A Computer Vision object-detection system built with **YOLOv8** to detect whether workers on a construction site are wearing safety helmets.
 
-## Classes (3)
-| id | name       |
-|----|------------|
-| 0  | Hardhat    |
-| 1  | NO-Hardhat |
-| 2  | Person     |
+The model detects three classes:
 
-The original dataset had 25 classes (vehicles, machinery, PPE, etc.). All boxes
-for other classes were removed and label files were rewritten with the 3
-classes above re-indexed to 0/1/2.
+* **Hardhat**
+* **NO-Hardhat**
+* **Person**
 
-## Selection method
-- Current active dataset is copied from `cv_project_dataset_cleaned/cv_project/dataset`.
-- Splits are used as provided by the cleaned dataset source.
+The system takes an image as input and produces bounding boxes, predicted class labels, and confidence scores for detected objects.
 
-## Final counts
-- Train: 140 images
-- Val: 40 images
-- Test: 20 images
-- Total: 200 images
+## 🚀 Features
 
-## Class balance (images containing each class)
-- Hardhat: 102 images / 274 boxes
-- NO-Hardhat: 90 images / 136 boxes
-- Person: 200 images / 444 boxes
+* Detects workers and helmet compliance
+* Identifies **Hardhat**, **NO-Hardhat**, and **Person**
+* Provides bounding boxes and confidence scores
+* Trained using YOLOv8
+* Includes evaluation and error analysis
+* Streamlit-based inference demo
+* Can be extended to real-time video/CCTV detection
 
-## Structure
-```
-dataset/
-├── images/{train,val,test}/
-├── labels/{train,val,test}/
-└── data.yaml
-```
+## 🛠️ Technologies Used
 
-## Annotation format
-- Labels use standard YOLO text format per object line:
-  class_id x_center y_center width height
-- x_center, y_center, width, and height are normalized numeric values in [0, 1].
-- There is no separate "normalized" folder. Normalization is encoded directly in each .txt label line.
+* **Python**
+* **YOLOv8 (Ultralytics)**
+* **Google Colab**
+* **Tesla T4 GPU**
+* **Google Drive**
+* **Roboflow**
+* **OpenCV**
+* **Pillow**
+* **Streamlit**
 
-## Notes for training
-- Update `path:` in `data.yaml` to your actual Google Drive path once uploaded
-  (e.g. `/content/drive/MyDrive/cv_project/dataset`).
-- This is a subset filtered from an existing labeled dataset, not manually
-  annotated from scratch. If your task requires "at least 100 manually
-  annotated images," check with your supervisor whether reusing/re-labeling
-  a public dataset counts, or whether you need to manually verify/re-draw a
-  portion of these boxes yourself and note that in your report.
+## 📊 Dataset
+
+The dataset contains **200 images** across the three detection classes.
+
+| Split      |  Images | Percentage |
+| ---------- | ------: | ---------: |
+| Training   |     140 |        70% |
+| Validation |      40 |        20% |
+| Test       |      20 |        10% |
+| **Total**  | **200** |   **100%** |
+
+The dataset was prepared using Roboflow, including manual annotation and data cleaning. Near-duplicate images and problematic bounding boxes were removed during preparation.
+
+### Classes
+
+```text
+0 - Hardhat
+1 - NO-Hardhat
+2 - Person
