@@ -104,7 +104,7 @@ NO-Hardhat is the clear weak point, driven mainly by class imbalance in the trai
 
 ## 🔍 Inference
 
-The trained model was run on all 20 held-out test images (confidence threshold 0.35), plus a short real-world construction video clip for extended video inference. Sample predictions and the full 20-image grid are in the report and in `outputs/predictions/`.
+The trained model was run on all 20 held-out test images (confidence threshold 0.35). Sample predictions and the full 20-image grid are in the report and in `outputs/predictions/`.
 
 ```python
 from ultralytics import YOLO
@@ -116,6 +116,25 @@ results = model.predict(
     save=True,
     project="outputs/predictions",
     name="test_predictions",
+)
+```
+
+### 🎥 Video Inference
+
+As an extension beyond static images, the trained model was also run on a short real-world construction video clip, processing every frame and producing an annotated output video with the same bounding-box, label, and confidence-score overlays used on the test images.
+
+* **Output video:** [`outputs/demo_results/output.mp4`](outputs/demo_results/output.mp4)
+
+```python
+from ultralytics import YOLO
+
+model = YOLO("models/best.pt")
+results = model.predict(
+    source="path/to/input_video.mp4",
+    conf=0.35,
+    save=True,
+    project="outputs/demo_results",
+    name="video_inference",
 )
 ```
 
@@ -132,9 +151,10 @@ At least 10 predictions were manually reviewed and logged (see the report for th
 
 ## 🖥️ Demo
 
-A Streamlit app is included for interactive inference — upload an image and get back the annotated result plus a detection-details table.
+A Streamlit app is included in [`streamlit_demo/`](streamlit_demo/) for interactive inference — upload an image and get back the annotated result plus a detection-details table.
 
 ```bash
+cd streamlit_demo
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -147,16 +167,25 @@ cv_project/
 │   ├── images/{train,val,test}/
 │   ├── labels/{train,val,test}/
 │   └── data.yaml
+├── models/
+│   └── best.pt
 ├── notebooks/
 │   └── training_notebook.ipynb
 ├── outputs/
-│   ├── training_results/
-│   ├── predictions/
-│   └── demo_results/
-├── models/
-│   └── best.pt
+│   ├── demo_results/
+│   │   └── output.mp4        # annotated video-inference output
+│   ├── predictions/          # 20 annotated test-set images
+│   └── training_results/
+│       ├── yolov8n_baseline/ # training run: weights, curves, logs
+│       └── test_eval/        # test-set evaluation outputs
 ├── report/
 │   └── final_report.pdf
+├── streamlit_demo/
+│   ├── app.py
+│   ├── best.pt               # local copy of weights for the demo app
+│   ├── README.md
+│   └── requirements.txt
+├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
