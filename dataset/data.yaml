@@ -1,0 +1,10 @@
+path: /content/drive/MyDrive/cv_project/dataset
+train: images/train
+val: images/val
+test: images/test
+
+nc: 3
+names:
+  0: Hardhat
+  1: NO-Hardhat
+  2: Person
