@@ -29,8 +29,6 @@ runs/
 wandb/
 
 # Google Drive temp files
-.tmp.drivedownload
-.tmp.driveupload
 .tmp.drivedownload/
 .tmp.driveupload/
 
