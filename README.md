@@ -2,9 +2,6 @@
 
 A Computer Vision object-detection system built with **YOLOv8** to detect whether workers on a construction site are wearing safety helmets.
 
-> AIRI Team PITB — AI Internship Task 1
-> Prepared by **Syed Muhammad Ali Kazmi** · Submitted to Omar Farooq, Associate AI/ML Engineer
-
 The model detects three classes:
 
 * **Hardhat**
@@ -231,7 +228,6 @@ model.predict(source='path/to/image.jpg', conf=0.35, save=True)
 ## 👤 Author
 
 **Syed Muhammad Ali Kazmi**
-AIRI Team PITB — AI Internship Task 1
 
 ## 📄 License
 
